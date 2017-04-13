@@ -1,11 +1,15 @@
 extends layout
 
 block content
-  if error
-    p #{error}
-  h1= options.title
-  p Welcome to #{options.title}
-  for item in options.users
-    div.item
-      a(href="/users/#{item.username}") #{item.username} <br>
-      span #{item.email}
+    .main-wrapper
+        .container
+            .row
+                .col-md-8.col-md-offset-2
+                    .blog-posts
+                        .col-md-12
+                            .post-item
+                                h2 Первый пост
+                                p Текст первого поста
+                                .post-footer
+                                    a.like(href="#") <i class="fa fa-heart-o" aria-hidden="true"></i> <span>12</span>
+

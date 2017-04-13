@@ -37,7 +37,7 @@ if (app.get('env') === 'development') {
     }));
 }
 
-app.use('/users', require('./routes/routes'));
+app.use('/', require('./routes/routes'));
 
 //error handling middleware
 app.use((err, req ,res, next) => {
