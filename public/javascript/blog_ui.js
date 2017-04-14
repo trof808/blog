@@ -1,6 +1,8 @@
 $(document).ready(() => {
-    $('.like').on('click', () => {
-        let likeIcon = $('.like i');
+    $('.like').on('click', (e) => {
+        e.preventDefault();
+        let likeIcon = $(this).find('i');
+        console.log(likeIcon.text());
         if(likeIcon.hasClass('fa-heart-o')) {
             likeIcon.removeClass('fa-heart-o');
             likeIcon.addClass('fa-heart');
