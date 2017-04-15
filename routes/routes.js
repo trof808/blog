@@ -9,7 +9,7 @@ router.get('/', (req, res, next) => {
         title: 'this is main page',
         posts: {}
     };
-    Posts.find({}).then((posts) => {
+    Posts.find({}).sort({"date": "1"}).then((posts) => {
         options = {
             posts: posts.map((post) => {
                 return {

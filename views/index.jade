@@ -15,6 +15,12 @@ block content
                                         .post-title
                                             h3 <a href="#">#{post.title}</a>
                                             span.data  <i class="fa fa-calendar-check-o" aria-hidden="true"></i> #{post.date}
+                                            .dop-opt
+                                                if post.translation
+                                                    .translate.dop-item
+                                                        span Перевод
+                                                .tutorial.dop-item
+                                                    span Туториал
                                     .post-content
                                         p #{post.description}
                                     a.read-next(href="#") Читать далее
@@ -24,4 +30,4 @@ block content
                                         .tags
                                             ul
                                                 each tag in post.tags
-                                                    li <a href="#"><i class="fa fa-hashtag" aria-hidden="true"></i> #{tag}</a>
+                                                    li <a href="/#{tag}"><i class="fa fa-hashtag" aria-hidden="true"></i> #{tag}</a>
