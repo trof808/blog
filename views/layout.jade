@@ -21,4 +21,19 @@ html
                     a(href='#') Популярное
                   li.list-item
                     a(href='#') Задачи
+                ul.nav-right
+                  li.list-item
+                    a(href='#') Регистрация
+                  li.list-item
+                    a(href='#') Войти
     block content
+
+    block footer
+      .footer-wrapper
+        .container
+          .row
+            .col-md-8.col-md-offset-2
+              .footer
+                span.rights <i class="fa fa-copyright" aria-hidden="true"></i> все права защищены
+                a.connect(href="#") <i class="fa fa-paper-plane-o" aria-hidden="true"></i> Связаться с автором
+                a.resume(href="#") <i class="fa fa-id-card-o" aria-hidden="true"></i> Посмотреть резюме

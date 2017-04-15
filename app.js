@@ -8,7 +8,7 @@ const server = http.createServer(app);
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
-const db = require('./db/db');
+const db = require('./db/db')(app);
 const config = require('./config');
 const path = require('path');
 

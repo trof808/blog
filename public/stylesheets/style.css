@@ -15,10 +15,31 @@ a {
   background-color: #fff;
   box-shadow: 0px 0px 4px #ccc;
 }
+.footer-wrapper {
+  padding: 20px 0;
+}
+.footer {
+  padding: 0 15px;
+  text-align: center;
+}
+span.rights {
+  color: rgba(0,0,0,.6);
+}
+a.connect, a.resume {
+  display: inline-block;
+  margin-left: 22px;
+  color: rgba(0,0,0,.6);
+}
+a.connect:hover, a.resume:hover {
+  color: #1f75fe;
+}
 ul.main-nav {
   margin: 0;
   padding: 0;
   list-style-type: none;
+}
+ul.main-nav.nav-left {
+  float: left;
 }
 li.list-item {
   display: inline-block;
@@ -38,6 +59,11 @@ li.list-item a.active {
 li.list-item a:hover {
   text-decoration: none;
   color: rgba(0,0,0,.8);
+}
+ul.nav-right {
+  float: right;
+  margin: 0;
+  padding: 0;
 }
 .post-item {
   padding: 20px 40px;
@@ -62,6 +88,9 @@ li.list-item a:hover {
 }
 .post-footer a.like:hover {
   text-decoration: none;
+}
+.post-footer a.like:hover i.fa.fa-heart-o {
+  filter: drop-shadow(0px 0px 2px #1f75fe);
 }
 .post-footer a.like span {
   font-size: 16px;
@@ -91,6 +120,14 @@ a.post-img img {
   margin-left: 30px;
   float: right;
   width: 510px;
+}
+.post-title h3 a {
+  color: rgba(0,0,0,.7);
+  transition: color .5s;
+}
+.post-title h3 a:hover {
+  text-decoration: none;
+  color: #000;
 }
 span.data {
   color: rgba(0,0,0,.6);
@@ -131,4 +168,7 @@ span.watches span {
 .tags ul li a {
   color: rgba(0,0,0,.5);
   font-size: 12px;
+}
+.tags ul li a:hover {
+  color: #1f75fe;
 }
