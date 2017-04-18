@@ -9,7 +9,7 @@ block content
                         //- if options.justVizited != ''
                         //-   .col-md-12
                         //-     .vizited-post
-                        //-       h4 #{options.vizited._id}
+                        //-       h4 #{options.vizited.title}
                         .col-md-12
                             for post in options.posts
                                 .post-item
@@ -17,7 +17,7 @@ block content
                                         .post-options
                                         a.post-img(href="#") <img src="/public/images/post/#{post.image}">
                                         .post-title
-                                            h3 <a href="/#{post.id}">#{post.title}</a>
+                                            h3 <a href="/#{post.links}">#{post.title}</a>
                                             span.data  <i class="fa fa-calendar-check-o" aria-hidden="true"></i> #{post.date}
                                             .dop-opt
                                                 if post.translation
@@ -27,7 +27,7 @@ block content
                                                     span Туториал
                                     .post-content
                                         p #{post.description}
-                                    a.read-next(href="#") Читать далее
+                                    a.read-next(href="/#{post.links}") Читать далее
                                     .post-footer
                                         a.like(href="#") <i class="fa fa-heart-o" aria-hidden="true"></i> <span>#{post.likes}</span>
                                         span.watches <i class="fa fa-eye" aria-hidden="true"></i> <span>#{post.watches}</span>

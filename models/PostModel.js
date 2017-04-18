@@ -4,6 +4,7 @@ const PostScheme = new mongoose.Schema({
     title: { type: String },
     content: { type: String },
     description: {type: String},
+    links: {type: String},
     date: { type: String },
     image: {type: String},
     tags: { type: Array, required: [true, 'field password is required'] },
@@ -13,6 +14,11 @@ const PostScheme = new mongoose.Schema({
     translation: { type: Boolean, default: false },
     tutorial: {type: Boolean, default: false}
 });
+
+PostScheme.virtual('link').get(() => {
+  return this.title.split(' ').join('_').toLowerCase();
+});
+
 
 PostScheme.methods.getDecription = (content) => {
     return content.split(' ').splice(0, 40).join(' ') + '...';
@@ -32,19 +38,9 @@ PostScheme.methods.getCorrectDate = (date) => {
     return nowDate;
 };
 
-Post = mongoose.model('Post', PostScheme);
+PostScheme.set('toObject', { getters: true, setters: true, virtual: true });
+PostScheme.set('toJSON', { getters: true, setters: true, virtual: true });
 
-// let post = new Post;
-// post.title = 'Моделирование данных в MongoDB';
-// post.content = "Наверное, многим интересно, как же команде Telegram удалось сделать популярную для мессенджеров функцию голосовых звонков уже сразу после запуска разительно отличающейся по качеству в лучшую сторону перед многими другими VoIP — сервисами. Во время изучения работы Telegram Calls я обратил внимание на интересную техническую деталь, которая используется на сетевом уровне и помогает уменьшить задержки при прохождении пакетов, когда при соединении используются релейные сервера. Если взглянуть на дамп трафика, который проходит при звонке, в котором использовался релейный сервер, можно заметить, что трафик определяется протоколом RIP. IP на 91. — это сервер Telegram. Я снимал дамп трафика на своём VPN — сервере, поэтому адрес клиента из локальной подсети.";
-// post.date = new Date('DD.MM.YYYY');
-// post.image = 'post1.jpg';
-// post.tags = ['Javascript, Python, NodeJS'];
-// post.likes = 12;
-// post.watches = 35;
-// post.comments = 3;
-// post.translation = true;
-//
-// post.save();
+Post = mongoose.model('Post', PostScheme);
 
 module.exports = Post;

@@ -4,23 +4,32 @@ const Posts = require('../models/PostModel');
 
 // const User = require('../models/UserModel');
 
-router.get('/', (req, res, next) => {
-    let options = {
-        title: 'this is main page',
-        posts: {},
-        justVizited: '',
-        vizited: {}
-    };
-    // if(req.session.justVizited) {
-    //   console.log('да')
-    //   options.justVizited = req.session.justVizited;
-    //   Posts.findById(req.session.justVizited).then((post) => {
-    //     options.vizited = post;
-    //   }).catch(next);
-    // }
+let options = {
+    title: 'this is main page',
+    posts: {},
+    justVizited: '',
+    vizited: {},
+    post: ''
+};
+
+const justVizited = (req, res, next) => {
+  if(!!req.session.justVizited) {
+    console.log('да')
+    options.justVizited = req.session.justVizited;
+    Posts.findById(req.session.justVizited, (err, post) => {
+      if(err) console.log(err.stack);
+      options.vizited = post;
+      next();
+    });
+  } else {
+    next();
+  }
+}
+
+router.get('/', justVizited,  (req, res, next) => {
+
     Posts.find({}).sort({"date": "1"}).then((posts) => {
-        options = {
-            posts: posts.map((post) => {
+        options.posts = posts.map((post) => {
                 return {
                     id: post._id,
                     title: post.title,
@@ -32,21 +41,18 @@ router.get('/', (req, res, next) => {
                     likes: post.likes,
                     watches: post.watches,
                     comments: post.comments,
-                    translation: post.translation
+                    translation: post.translation,
+                    links: post.links
                 }
-            })
-        };
+            });
+        console.log(options);
         res.render('index', {options: options});
     }).catch(next);
 });
 
-router.get('/:id', (req, res, next) => {
-  req.session.justVizited = req.params.id;
-  let options = {};
-  Posts.findById(req.params.id).then((post) => {
-    options = {
-      post: post
-    }
+router.get('/:links', (req, res, next) => {
+  Posts.findOne({'links': req.params.links}).then((post) => {
+    options.post = post
     res.render('post', {options: options});
   }).catch(next);
 });
