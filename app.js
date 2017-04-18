@@ -6,6 +6,7 @@ const app = express();
 const server = http.createServer(app);
 
 const bodyParser = require('body-parser');
+const MongoSessionStore = require('session-mongoose')(require('connect'));
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
 const db = require('./db/db')(app);
@@ -21,11 +22,15 @@ app.set('view engine', 'jade');
 app.use('/public', express.static(path.join(__dirname, 'public')));
 
 //set up sessions
+const sessionStore = new MongoSessionStore({
+  url: config.mongo[app.get('env')].connectionString
+})
 app.use(cookieParser(config.cookieSecret));
 app.use(session({
     resave: false,
     saveUninitialized: false,
-    secret: config.cookieSecret
+    secret: config.cookieSecret,
+    store: sessionStore
 }));
 
 //logger
@@ -98,4 +103,3 @@ if(require.main === module) {
 } else {
     module.exports = startServer;
 }
-
