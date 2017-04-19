@@ -4,6 +4,8 @@ const debug = require('debug')('rest-api:server');
 const express = require('express');
 const app = express();
 const server = http.createServer(app);
+const vhost = require('vhost');
+const admin = express.Router();
 
 const bodyParser = require('body-parser');
 const MongoSessionStore = require('session-mongoose')(require('connect'));
@@ -41,6 +43,11 @@ if (app.get('env') === 'development') {
         path: __dirname + '/log/request.log'
     }));
 }
+//using subdomens
+app.use(vhost('admin.*', admin));
+admin.get('/', (req, res, next) => {
+  res.render('admin/admin');
+});
 
 app.use('/', require('./routes/routes'));
 
