@@ -7,7 +7,7 @@ const PostScheme = new mongoose.Schema({
     links: {type: String},
     date: { type: String },
     image: {type: String},
-    tags: { type: Array, required: [true, 'field password is required'] },
+    tags: { type: Array},
     likes: { type: Number },
     watches: {type: String},
     comments: { type: Number },

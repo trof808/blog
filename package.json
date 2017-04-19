@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node app_cluster.js"
+    "start": "node app_cluster.js",
+    "test": "mocha"
   },
   "dependencies": {
     "body-parser": "~1.16.0",
@@ -15,6 +16,7 @@
     "serve-favicon": "~2.3.2"
   },
   "devDependencies": {
+    "assert": "^1.4.1",
     "chai": "^3.5.0",
     "cookie-parser": "^1.4.3",
     "express-logger": "0.0.3",
