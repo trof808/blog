@@ -9,8 +9,9 @@ let options = {
     posts: {},
     justVizited: '',
     vizited: {},
-    post: ''
+    post: {}
 };
+
 
 const justVizited = (req, res, next) => {
   if(!!req.session.justVizited) {
@@ -50,8 +51,8 @@ router.get('/', justVizited,  (req, res, next) => {
     }).catch(next);
 });
 
-router.get('/:links', (req, res, next) => {
-  Posts.findOne({'links': req.params.links}).then((post) => {
+router.get('/:id', (req, res, next) => {
+  Posts.findById(req.params.id).then((post) => {
     options.post = post
     res.render('post', {options: options});
   }).catch(next);
