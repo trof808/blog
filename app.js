@@ -43,6 +43,16 @@ if (app.get('env') === 'development') {
         path: __dirname + '/log/request.log'
     }));
 }
+//set up auth
+const auth = require('./lib/auth')(app,{
+  baseUrl: process.env.BASE_URL,
+  providers: config.authProviders,
+  successRedirect: '/',
+  failureRedirect: '/unauthorized'
+});
+auth.init();
+auth.registerRoutes();
+
 //using subdomens
 app.use(vhost('admin.*', admin));
 admin.get('/', (req, res, next) => {

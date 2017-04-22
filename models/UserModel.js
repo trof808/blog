@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const UserScheme = new mongoose.Schema({
     authId: {
       type: String
-    }
+    },
     username: {
         type: String,
         required: [true, 'field name is required'],
@@ -16,7 +16,7 @@ const UserScheme = new mongoose.Schema({
     role: {
       type: String
     },
-    createdId: {
+    created: {
       type: Date
     }
 });
